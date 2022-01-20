@@ -21,6 +21,7 @@ flask_script = "^2.0.6"
 sqlalchemy_utils = "^0.36.8"
 psycopg2-binary = "^2.8.6"
 Flask-Cors = "^3.0.9"
+typer = "^0.4.0"
 
 [tool.poetry.dev-dependencies]
 nox = "^2020.8.22"
@@ -39,6 +40,9 @@ coverage = "^5.5"
 
 [tool.poetry.extras]
 testing = ["pytest", "pytest-cov", "pytest-xdist"]
+
+[tool.poetry.scripts]
+{{ cookiecutter.package_name }}_server = "{{ cookiecutter.package_name }}.cli.main:typer_app"
 
 [tool.black]
 line-length = 88

@@ -2,11 +2,11 @@
 import logging
 from pathlib import Path
 
+import typer
 from flask import Flask
+from flask_cors import CORS
 from flask_migrate import Migrate
 from werkzeug.middleware.proxy_fix import ProxyFix
-
-from flask_cors import CORS
 from {{cookiecutter.package_name}}.api import api
 from {{cookiecutter.package_name}}.cfg import config
 from {{cookiecutter.package_name}}.models import db
@@ -39,3 +39,13 @@ def create_app(test_db=None):
     # https://github.com/python-restx/flask-restx/issues/230
     CORS(new_app)
     return new_app
+
+typer_app = typer.Typer()
+
+@typer_app.command()
+def run(host: str = "localhost", port: int = 5000, debug: bool = False):
+    flask_app = create_app()
+    flask_app.run(host=host, port=port, debug=debug)
+
+if __name___ = "__main__":
+    typer_app()
